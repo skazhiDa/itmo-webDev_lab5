@@ -1,0 +1,86 @@
+@media (max-width: 1024px) {
+  .table-date span{
+    display: block;
+  }
+
+  .table_time-head {
+    min-width: 96px;
+  }
+
+  .change-btn {
+    margin: 0;
+    padding: 0;
+  }
+
+  .table_actions {
+    min-width: 95px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container--main {
+    overflow: auto;
+  }
+}
+
+@media (max-width: 476px) {
+  main {
+    padding-top: 20px;
+  }
+
+  .header__label {
+    display: none;
+  }
+
+  .header {
+    padding: 8px;
+  }
+
+  .logo-img {
+    display: none;
+  }
+
+  .logo-img--small {
+    display: inline-block;
+  }
+
+  .container--header {
+    justify-content: center;
+  }
+
+  .logo-link {
+    display: none;
+  }
+
+  .clients-title {
+    font-size: 18px;
+    line-height: 25px;
+    margin-bottom: 0;
+  }
+
+  .modal-dialog {
+    max-width: 300px;
+    margin: 50px auto;
+  }
+
+  .form-client__label {
+    padding: 0 10px;
+  }
+
+  .modal-body {
+    padding-top: 0;
+  }
+
+  .modal-title {
+    font-size: 18px;
+    line-height: 25px;
+  }
+
+  .modal-header {
+    padding: 35px 15px 15px;
+  }
+
+  .place-holder {
+    left: 12px;
+  }
+}

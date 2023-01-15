@@ -1,0 +1,23 @@
+{
+  "name": "lab5",
+  "version": "1.0.0",
+  "description": "",
+  "main": "crm-backend/app.js",
+  "scripts": {
+    "test": "nodemon crm-backend/app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.27.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}

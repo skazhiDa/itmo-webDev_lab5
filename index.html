@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>skb.</title>
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/media.css">
+  <script defer src="popper.min.js"></script>
+  <script defer src="tippy-bundle.umd.min.js"></script>
+  <script defer src="inputmask.min.js"></script>
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <header class="header">
+    <div class="container container--header">
+      <a class="logo-link" href="#"><img class="logo-img" src="img/logo.svg" alt="logo link"></a>
+      <a href="#"><img class="logo-img--small" src="img/small-logo.svg" alt="logo link"></a>
+      <label class="header__label">
+        <input id="filter-input" class="header__input" placeholder="Введите запрос">
+      </label>
+    </div>
+  </header>
+  <main class="main">
+    <h1 class="clients-title">Клиенты</h1>
+    <div class="container container--main">
+      <div class="lds-ring-wrapper">
+        <div class="lds-ring">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">
+              <span class="table__head-id">ID</span>
+              <button class="table-head-btn" data-field="id" data-direction="true">
+                <img id="arrow-table-id" class="arrow-table" src="img/arrowUp.svg">
+              </button>
+            </th>
+            <th scope="col" class="table_full-name">
+              Фамилия Имя Отчество
+              <button class="table-head-btn" data-field="name" data-direction="false">
+                <img id="arrow-table-name" class="arrow-table" src="img/arrowUp.svg">
+                <span class="alphabet">А-Я</span>
+              </button>
+            </th>
+            <th scope="col" class="table_time-head">
+              Дата и время создания
+              <button class="table-head-btn" data-field="createdAt" data-direction="false">
+                <img id="arrow-table-creation" class="arrow-table" src="img/arrowUp.svg">
+              </button>
+            </th>
+            <th scope="col" class="table_time-head">
+              Последние изменения
+              <button class="table-head-btn" data-field="updatedAt" data-direction="false">
+                <img id="arrow-table-change" class="arrow-table" src="img/arrowUp.svg">
+              </button>
+            </th>
+            <th scope="col">Контакты</th>
+            <th scope="col">Действия</th>
+          </tr>
+        </thead>
+        <tbody id="clients-body" class="table-body"></tbody>
+      </table>
+      <button id="open-modal-btn" type="button" class="button js-open-modal" data-target="modal">
+        <img class="add-client-btn" src="img/add-client.svg" alt="add client">
+        Добавить клиента
+      </button>
+      <!-- Modal add client-->
+      <div class="modal" id="modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <button class="modal-close js-close-modal" data-closemodal="modal"></button>
+            <div class="modal-header">
+              <h5 class="modal-title">Новый клиент</h5>
+            </div>
+            <div class="modal-body">
+              <form id="form-new-client" class="form-client">
+                <label class="form-client__label">
+                  <input id="add-client-surname" class="form-client__input">
+                  <div class="place-holder" data-placeholder="add-client-surname">Фамилия<span>*</span></div>
+                </label>
+                <label class="form-client__label">
+                  <input id="add-client-name" class="form-client__input">
+                  <div class="place-holder" data-placeholder="add-client-name">Имя<span>*</span></div>
+                </label>
+                <label class="form-client__label">
+                  <input id="add-client-lastname" class="form-client__input">
+                  <div class="place-holder" data-placeholder="add-client-lastname">Отчество</div>
+                </label>
+                <div class="modal__add-contact">
+                  <ul id="contact-list-add" class="modal-contact-list"></ul>
+                  <button type="button" class="button-add" data-modalcontact="contact-list-add">
+                    <img class="add-contact-img" src="img/add_circle_outline.svg" alt="add contact image">
+                    Добавить контакт
+                  </button>
+                </div>
+                <div id="add-footer" class="modal-footer" data-active="false">
+                  <button id="button-safe-new" type="submit" class="button-safe">Сохранить</button>
+                  <button type="button" class="modal-back js-close-modal" data-closemodal="modal">Отмена</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Modal change client-->
+      <div class="modal" id="modal-change" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <button class="modal-close js-close-modal" data-closemodal="modal-change"></button>
+            <div class="modal-header">
+              <h5 class="modal-title">Изменить данные</h5>
+              <span class="modal-change__id" id="modal-change-id"></span>
+            </div>
+            <div class="modal-body">
+              <form id="form-change-client" class="form-client">
+                <label class="form-client__label">
+                  <span class="form-change__span">Фамилия<span class="blu">*</span></span>
+                  <input id="change-client-surname" class="form-client__input">
+                  <div class="place-holder place-holder__change" data-placeholder="change-client-surname">Фамилия<span>*</span></div>
+                </label>
+                <label class="form-client__label">
+                  <span class="form-change__span">Имя<span class="blu">*</span></span>
+                  <input id="change-client-name" class="form-client__input">
+                  <div class="place-holder place-holder__change" data-placeholder="change-client-name">Имя<span>*</span></div>
+                </label>
+                <label class="form-client__label">
+                  <span class="form-change__span">Отчество<span class="blu">*</span></span>
+                  <input id="change-client-lastname" class="form-client__input">
+                  <div class="place-holder place-holder__change" data-placeholder="change-client-lastname">Отчество</div>
+                </label>
+                <div class="modal__add-contact">
+                  <ul id="contact-list-change" class="modal-contact-list"></ul>
+                  <button class="button-add" data-modalcontact="contact-list-change" type="button">
+                    <img class="add-contact-img" src="img/add_circle_outline.svg">
+                    Добавить контакт
+                  </button>
+                </div>
+                <div id="change-footer" class="modal-footer" data-active="false">
+                  <button id="button-safe-changes" class="button-safe" type="submit">Сохранить</button>
+                  <button id="delete-from-change-modal" class="modal-back delete-btn" type="button" data-target="modal-delete">Удалить клиента</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Modal delete client-->
+      <div class="modal" id="modal-delete" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <button class="modal-close js-close-modal" data-closemodal="modal-delete"></button>
+            <div class="modal-header">
+              <h5 class="modal-title modal-title__delete">Удалить клиента</h5>
+            </div>
+            <div class="modal-body">
+              <span class="delete-question">Вы действительно хотите удалить данного клиента?</span>
+            </div>
+            <div class="modal-footer">
+              <button id="confirm-delete" class="button-safe">Удалить</button>
+              <button class="modal-back js-close-modal" data-closemodal="modal-delete">Отмена</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
